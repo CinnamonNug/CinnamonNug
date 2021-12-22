@@ -12,21 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Put other includes/defines here:
-    // ()
-#define WALKSPEED 300
-#define MAX_ENEMY 1
-#define ENEMY_DETECTION_RANGE 800
-#define ENEMY_SPEED 200
-//
-
-// Define structs here 
-typedef struct Enemy {
-    Rectangle rec;
-    bool active;
-} Enemy;
-///////////
-
 typedef struct Gun {
     float offset;
     Rectangle rec;
@@ -43,9 +28,9 @@ int main (void) {
     /////////   ENEMY VALUES
     // Create array for enemys and set values
     Enemy enemy[MAX_ENEMY];
+    FetchEnemyData(enemy);
     for (int i = 0; i < MAX_ENEMY; i++) {
-        enemy[i].rec.x = 10;
-        enemy[i].rec.y = 10;
+  
         enemy[i].rec.height = 70;
         enemy[i].rec.width = 70;
     }
@@ -81,11 +66,10 @@ int main (void) {
     mainCam.zoom = 1.00000000e+0f;
     /////////
 
-    
-
-    // Background
+    /////////   CAMERA SETTINGS
     Aseprite background = LoadAseprite("resources/background_1.aseprite");
-    
+    /////////
+
     SetTargetFPS(144);
 
     while (!WindowShouldClose()) {        
@@ -98,20 +82,53 @@ int main (void) {
         // MOVE THE GUN
         newGun.rec.x = playerpos.x;
         newGun.rec.y = playerpos.y;
+        //////
 
-
-        // Move the enemy entities
+        // Move the ENEMY entities
         for (int i = 0; i < MAX_ENEMY; i ++) {
-            // Calculate the difference in x y values between the enemy and the player
-            float xDis = enemy[i].rec.x - playerpos.x;
-            float yDis = enemy[i].rec.y - playerpos.y;
 
+            // Calculate the difference in x y values between the enemy and the player
+            float xDis = playerpos.x - enemy[i].rec.x;
+            float yDis = playerpos.y - enemy[i].rec.y;
             float hyp = hypotf(xDis, yDis);
+
+            float xSpeed = GetFrameTime()*ENEMY_SPEED*(xDis/hyp);
+            float ySpeed = GetFrameTime()*ENEMY_SPEED*(yDis/hyp);
+
+            ///////////////  CHECK FOR COLLISIONS
+            for (int j = i + 1; j < MAX_ENEMY; j++) {
+                if (i != j) {
+                    if (enemy[i].rec.x + enemy[i].rec.width > enemy[j].rec.x && 
+                    enemy[i].rec.x < enemy[j].rec.x + enemy[j].rec.width && 
+                    enemy[i].rec.y + enemy[i].rec.height + xSpeed > enemy[j].rec.y && 
+                    enemy[i].rec.y + xSpeed < enemy[j].rec.y + enemy[j].rec.height) {
+                        xSpeed *= -1;
+                        ySpeed *= -1;
+                    }
+                }
+            }
+            ////////////////
+            
             if (hyp < ENEMY_DETECTION_RANGE) {
-                enemy[i].rec.x -= GetFrameTime()*ENEMY_SPEED*(xDis/hyp);
-                enemy[i].rec.y -= GetFrameTime()*ENEMY_SPEED*(yDis/hyp);
-            }      
+                enemy[i].rec.x += xSpeed;
+                enemy[i].rec.y += ySpeed;
+            }
         }
+
+        // for (int i = 0; i < MAX_ENEMY; i++) {
+        //     for (int j = 0; j < MAX_ENEMY; j++) {
+        //         if (i != j) {
+        //             if (enemy[i].rec.x < enemy[j].rec.x  ||
+        //             enemy[i].rec.x > enemy[j].rec.x + enemy[j].rec.width ) {
+                        
+        //             }
+        //             if (enemy[i].rec.y < enemy[j].rec.y  ||
+        //             enemy[i].rec.y > enemy[j].rec.y + enemy[j].rec.height ) {
+                        
+        //             }
+        //         }
+        //     }
+        // }
 
         // Update the maincam target
         mainCam.target = playerpos;
