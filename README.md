@@ -1,5 +1,5 @@
 - 👋 Hi, I’m a nugget
-- 👀 I’m interested in not being poopoo at C
+- 😀 I’m interested in not being poopoo at C
 - 🌱 I’m currently learning C
 - 💞️ I’m looking to collaborate on a C project
-- 📫 I will find you
+- 👀 I will find you
