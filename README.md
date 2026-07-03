@@ -36,3 +36,4 @@ Hi, I’m a nugget and I grew fingers and consciousness and before I knew it I w
 ![Jupyter](https://img.shields.io/static/v1?style=for-the-badge&message=Jupyter&color=F37626&logo=Jupyter&logoColor=FFFFFF&label=)
 ![GIMP](https://img.shields.io/static/v1?style=for-the-badge&message=GIMP&color=5C5543&logo=GIMP&logoColor=FFFFFF&label=)
 ![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=for-the-badge&logo=Qt&logoColor=white)
+![scikit-learn](https://img.shields.io/static/v1?style=for-the-badge&message=scikit-learn&color=23F7931E&logo=scikit-learn&logoColor=white&label=)
