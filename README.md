@@ -23,7 +23,6 @@ Hi, I’m a nugget and I grew fingers and consciousness and before I knew it I w
 ## Endorsed Projects
 ![Arch Linux](https://img.shields.io/static/v1?style=for-the-badge&message=Arch&nbsp;Linux&color=1D99F3&logo=arch-linux&logoColor=FFFFFF&label=)
 ![KDE](https://img.shields.io/static/v1?style=for-the-badge&message=KDE&color=1D99F3&logo=KDE&logoColor=FFFFFF&label=)
-
 ![Open Source Initiative](https://img.shields.io/static/v1?style=for-the-badge&message=Open+Source+Initiative&color=3DA639&logo=Open+Source+Initiative&logoColor=FFFFFF&label=)
 ![Kdenlive](https://img.shields.io/static/v1?style=for-the-badge&message=Kdenlive&color=527EB2&logo=Kdenlive&logoColor=FFFFFF&label=)
 ![SpotifyQt](https://img.shields.io/static/v1?style=for-the-badge&message=SpotifyQt&color=1ED760&logo=spotify&logoColor=white&label=)
